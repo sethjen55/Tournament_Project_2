@@ -1,24 +1,20 @@
--- Table definitions for the tournament project.
+-- Table and view definitions for the tournament project database.
 
-\c tournament
+-- Drop any existing Views and tables that are needed for this schema
 DROP VIEW IF EXISTS vwStandings;
 DROP View IF EXISTS vwMatchCount;
 DROP VIEW IF EXISTS vwWinCount;
 DROP VIEW IF EXISTS vwLossCount;
 DROP TABLE IF EXISTS tblMatches;
 DROP TABLE IF EXISTS tblPlayers;
-DROP DATABASE IF EXISTS tournament;
 
-CREATE DATABASE tournament;
-\c tournament
-
--- Players Table
+-- Players Table stores player names with a unique ID for each
 CREATE TABLE tblPlayers (
 	id SERIAL primary key,
 	name varchar(50)
 );
 
--- Matches Table
+-- Matches Table stores each match played with the tblPlayers.id for ea winner and looser
 CREATE TABLE tblMatches (
 	id SERIAL primary key,
 	winner int references tblPlayers(id),
@@ -41,7 +37,7 @@ CREATE VIEW vwWinCount AS
 	ORDER BY 
 		wins DESC;
 
--- Loss View shows number of losses for each Player
+-- Loss View shows number of losses for each Player to be used in EXTRA CREDIT portion of eliminating ties
 CREATE VIEW vwLossCount AS
 	SELECT 
 		P.id, 
