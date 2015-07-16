@@ -41,7 +41,7 @@ vagrant@vagrant-ubuntu-trusty-32:/vagrant/tournament$ psql tournament
 tournament=> \i tournament.sql 
 tournament=> \q
 ```
-* Final step, Run the test file
+* Final step, Run the test file and see the following output to verify Successful Run
 ```bash
 vagrant@vagrant-ubuntu-trusty-32:/vagrant/tournament$ python tournament_test.py 
 1. Old matches can be deleted.
